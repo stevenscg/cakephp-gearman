@@ -1,0 +1,37 @@
+Gearman Client and Worker Shells for CakePHP 2.2.X
+
+This is a very simple implementation of a Gearman (http://gearman.org)
+client and worker as Shells in CakePHP.
+
+It is intended to give you a working example and a starting
+point for integrating Gearman into your CakePHP application.
+
+Possible uses include:
+* Geocoding addresses
+* Remote API operations
+* Photo manipulation
+
+Installation
+1) Unpack the project into your app directory.
+2) Ensure that gearmand is installed (see http://gearman.org)
+3) Ensure that the PHP wrapper is installed (see http://pecl.php.net/package/gearman)
+
+Usage
+1) Start gearmand (the examples assume 127.0.0.1).
+2) Change to your CakePHP app directory.
+3) In one terminal window, start the worker:
+ Console/cake gearman_worker
+4) In a different terminal window, execute the client:
+ Console/cake gearman_client
+
+After step 4, you should see something like this in your gearman_client terminal:
+{"foo":"bar","now":1341884726,"response":"it worked"}
+
+You can always see that your worker is running from the command line:
+$> gearadmin --status
+
+Synchronous vs Asynchronous
+In the GearmanClientShell, there is a later section of code that you can use
+to experiment with the asynchronous mode.  This is great for long-running tasks
+or fire-and-forget applications.  It is a bit harder to work with, so I left the
+synchronous example as the default.
